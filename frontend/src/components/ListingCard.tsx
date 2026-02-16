@@ -1,7 +1,12 @@
 import { Link } from "react-router-dom";
+import { MessageCircle } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { useToast } from "@/hooks/use-toast";
 import { Listing } from "@/lib/api";
 
 export function ListingCard({ listing }: { listing: Listing }) {
+  const { toast } = useToast();
+
   return (
     <Link
       to={`/listing/${listing.id}`}
@@ -32,6 +37,19 @@ export function ListingCard({ listing }: { listing: Listing }) {
             {listing.category}
           </span>
         </div>
+        <Button
+          variant="outline"
+          size="sm"
+          className="w-full mt-3 gap-2"
+          onClick={(e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            toast({ title: "Coming soon", description: "Contact feature is not available yet." });
+          }}
+        >
+          <MessageCircle className="w-4 h-4" />
+          Contact Seller
+        </Button>
       </div>
     </Link>
   );

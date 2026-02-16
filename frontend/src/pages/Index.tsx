@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import { Plus, Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -7,10 +7,19 @@ import { ListingCard } from "@/components/ListingCard";
 import { getListings, CATEGORIES, type Listing, type Category } from "@/lib/api";
 
 const Index = () => {
+  const [searchParams, setSearchParams] = useSearchParams();
+  const activeCategory = (searchParams.get("category") as Category) || "All";
   const [listings, setListings] = useState<Listing[]>([]);
   const [loading, setLoading] = useState(true);
-  const [activeCategory, setActiveCategory] = useState<Category>("All");
   const [search, setSearch] = useState("");
+
+  const setActiveCategory = (cat: Category) => {
+    if (cat === "All") {
+      setSearchParams({});
+    } else {
+      setSearchParams({ category: cat });
+    }
+  };
 
   useEffect(() => {
     setLoading(true);
@@ -58,9 +67,9 @@ const Index = () => {
         {/* Categories */}
         <div className="flex gap-2 overflow-x-auto pb-4 scrollbar-hide -mx-4 px-4">
           {CATEGORIES.map((cat) => (
-            <button
+            <Link
               key={cat}
-              onClick={() => setActiveCategory(cat)}
+              to={cat === "All" ? "/" : `/?category=${encodeURIComponent(cat)}`}
               className={`
                 px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-all duration-200
                 ${
@@ -71,7 +80,7 @@ const Index = () => {
               `}
             >
               {cat}
-            </button>
+            </Link>
           ))}
         </div>
 
