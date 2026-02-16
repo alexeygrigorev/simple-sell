@@ -6,7 +6,6 @@ export interface Listing {
   category: string;
   imageUrl: string;
   createdAt: string;
-  location: string;
 }
 
 export const CATEGORIES = [
@@ -32,7 +31,6 @@ const mockListings: Listing[] = [
     category: "Furniture",
     imageUrl: "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=600&h=400&fit=crop",
     createdAt: "2026-02-15T10:00:00Z",
-    location: "Brooklyn, NY",
   },
   {
     id: "2",
@@ -42,7 +40,6 @@ const mockListings: Listing[] = [
     category: "Electronics",
     imageUrl: "https://images.unsplash.com/photo-1695048133142-1a20484d2569?w=600&h=400&fit=crop",
     createdAt: "2026-02-14T14:30:00Z",
-    location: "Manhattan, NY",
   },
   {
     id: "3",
@@ -52,7 +49,6 @@ const mockListings: Listing[] = [
     category: "Clothing",
     imageUrl: "https://images.unsplash.com/photo-1542272604-787c3835535d?w=600&h=400&fit=crop",
     createdAt: "2026-02-14T09:15:00Z",
-    location: "Austin, TX",
   },
   {
     id: "4",
@@ -62,7 +58,6 @@ const mockListings: Listing[] = [
     category: "Sports",
     imageUrl: "https://images.unsplash.com/photo-1485965120184-e220f721d03e?w=600&h=400&fit=crop",
     createdAt: "2026-02-13T16:00:00Z",
-    location: "Portland, OR",
   },
   {
     id: "5",
@@ -72,7 +67,6 @@ const mockListings: Listing[] = [
     category: "Electronics",
     imageUrl: "https://images.unsplash.com/photo-1618366712010-f4ae9c647dcb?w=600&h=400&fit=crop",
     createdAt: "2026-02-13T11:00:00Z",
-    location: "Chicago, IL",
   },
   {
     id: "6",
@@ -82,7 +76,6 @@ const mockListings: Listing[] = [
     category: "Home & Garden",
     imageUrl: "https://images.unsplash.com/photo-1614594975525-e45190c55d0b?w=600&h=400&fit=crop",
     createdAt: "2026-02-12T08:00:00Z",
-    location: "San Francisco, CA",
   },
 ];
 

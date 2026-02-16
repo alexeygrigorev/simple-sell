@@ -22,7 +22,6 @@ const CreateListing = () => {
   const [description, setDescription] = useState("");
   const [category, setCategory] = useState<Category>("Other");
   const [price, setPrice] = useState("");
-  const [location, setLocation] = useState("");
 
   const handleImageSelected = useCallback(async (file: File, preview: string) => {
     setImagePreview(preview);
@@ -53,7 +52,6 @@ const CreateListing = () => {
         price: Number(price),
         category,
         imageUrl: imagePreview || "https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=600&h=400&fit=crop",
-        location: location || "Unknown",
       });
       toast({ title: "Listing created!", description: "Your item is now live." });
       navigate("/");
@@ -113,7 +111,7 @@ const CreateListing = () => {
 
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-sm font-medium text-foreground mb-1.5">Price ($)</label>
+                  <label className="block text-sm font-medium text-foreground mb-1.5">Price (€)</label>
                   <Input type="number" value={price} onChange={(e) => setPrice(e.target.value)} placeholder="0" min="0" required />
                 </div>
                 <div>
@@ -129,11 +127,6 @@ const CreateListing = () => {
                     </SelectContent>
                   </Select>
                 </div>
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium text-foreground mb-1.5">Location</label>
-                <Input value={location} onChange={(e) => setLocation(e.target.value)} placeholder="City, State" />
               </div>
             </div>
 

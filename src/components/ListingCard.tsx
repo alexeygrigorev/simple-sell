@@ -1,5 +1,5 @@
 import { Listing } from "@/lib/api";
-import { MapPin, MessageCircle } from "lucide-react";
+import { MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
 
@@ -22,19 +22,15 @@ export function ListingCard({ listing }: { listing: Listing }) {
             {listing.title}
           </h3>
           <span className="text-lg font-bold text-primary whitespace-nowrap">
-            ${listing.price}
+            €{listing.price}
           </span>
         </div>
         <p className="text-sm text-muted-foreground line-clamp-2 mb-3">
           {listing.description}
         </p>
-        <div className="flex items-center justify-between">
+        <div className="flex items-center">
           <span className="inline-block text-xs font-medium px-2.5 py-1 rounded-full bg-secondary text-secondary-foreground">
             {listing.category}
-          </span>
-          <span className="flex items-center gap-1 text-xs text-muted-foreground">
-            <MapPin className="w-3 h-3" />
-            {listing.location}
           </span>
         </div>
         <Button
