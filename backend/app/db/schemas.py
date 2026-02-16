@@ -32,10 +32,3 @@ class ListingOut(BaseModel):
     created_at: datetime
 
     model_config = {"from_attributes": True}
-
-
-class AIAnalysisResult(BaseModel):
-    title: str
-    description: str
-    category: str
-    price: float

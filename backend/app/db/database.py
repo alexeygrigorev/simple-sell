@@ -1,7 +1,11 @@
 from sqlalchemy import create_engine, event
 from sqlalchemy.orm import DeclarativeBase, sessionmaker
 
-DATABASE_URL = "sqlite:///listings.db"
+from pathlib import Path
+
+DB_DIR = Path(__file__).resolve().parent.parent.parent / "db"
+DB_DIR.mkdir(exist_ok=True)
+DATABASE_URL = f"sqlite:///{DB_DIR / 'listings.db'}"
 
 engine = create_engine(DATABASE_URL, connect_args={"check_same_thread": False})
 

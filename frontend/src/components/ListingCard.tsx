@@ -1,13 +1,12 @@
+import { Link } from "react-router-dom";
 import { Listing } from "@/lib/api";
-import { MessageCircle } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { useToast } from "@/hooks/use-toast";
 
 export function ListingCard({ listing }: { listing: Listing }) {
-  const { toast } = useToast();
-
   return (
-    <div className="group rounded-lg overflow-hidden bg-card shadow-card hover:shadow-card-hover transition-all duration-300 hover:-translate-y-1">
+    <Link
+      to={`/listing/${listing.id}`}
+      className="group rounded-lg overflow-hidden bg-card shadow-card hover:shadow-card-hover transition-all duration-300 hover:-translate-y-1 block"
+    >
       <div className="aspect-[4/3] overflow-hidden bg-muted">
         <img
           src={listing.imageUrl}
@@ -33,16 +32,7 @@ export function ListingCard({ listing }: { listing: Listing }) {
             {listing.category}
           </span>
         </div>
-        <Button
-          variant="outline"
-          size="sm"
-          className="w-full mt-3 gap-2"
-          onClick={() => toast({ title: "Coming soon", description: "Contact feature is not available yet." })}
-        >
-          <MessageCircle className="w-4 h-4" />
-          Contact Seller
-        </Button>
       </div>
-    </div>
+    </Link>
   );
 }

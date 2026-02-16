@@ -6,7 +6,8 @@ from sqlalchemy.orm import Session
 
 from app.db.database import get_db
 from app.db.models import Listing
-from app.db.schemas import ListingOut, AIAnalysisResult
+from app.db.schemas import ListingOut
+from app.services.ai import AIAnalysisResult
 from app.services.ai import analyze_image_with_ai
 
 router = APIRouter()

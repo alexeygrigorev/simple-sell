@@ -66,19 +66,3 @@ def test_create_listing_missing_fields(client):
         data={"title": "Incomplete"},
     )
     assert res.status_code == 422
-
-
-def test_analyze_image(client):
-    """Calls the real OpenAI API — requires OPENAI_API_KEY in env."""
-    image_bytes = _make_test_image()
-    res = client.post(
-        "/api/analyze-image",
-        files={"image": ("test.jpg", image_bytes, "image/jpeg")},
-    )
-    assert res.status_code == 200
-    data = res.json()
-    assert "title" in data
-    assert "description" in data
-    assert "category" in data
-    assert "price" in data
-    assert isinstance(data["price"], (int, float))

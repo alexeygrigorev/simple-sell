@@ -56,6 +56,13 @@ export async function getListings(category?: string): Promise<Listing[]> {
   return data.map(toListing);
 }
 
+export async function getListing(id: string): Promise<Listing> {
+  const res = await fetch(`${API_BASE}/api/listings/${id}`);
+  if (!res.ok) throw new Error("Listing not found");
+  const data: BackendListing = await res.json();
+  return toListing(data);
+}
+
 export async function createListing(data: {
   title: string;
   description: string;
