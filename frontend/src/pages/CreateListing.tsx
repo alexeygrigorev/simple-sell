@@ -17,6 +17,7 @@ const CreateListing = () => {
   const [isAnalyzing, setIsAnalyzing] = useState(false);
   const [isSaving, setIsSaving] = useState(false);
   const [imagePreview, setImagePreview] = useState("");
+  const [imageFile, setImageFile] = useState<File | null>(null);
 
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
@@ -24,6 +25,7 @@ const CreateListing = () => {
   const [price, setPrice] = useState("");
 
   const handleImageSelected = useCallback(async (file: File, preview: string) => {
+    setImageFile(file);
     setImagePreview(preview);
     setIsAnalyzing(true);
     try {
@@ -43,7 +45,7 @@ const CreateListing = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!title || !price) return;
+    if (!title || !price || !imageFile) return;
     setIsSaving(true);
     try {
       await createListing({
@@ -51,7 +53,7 @@ const CreateListing = () => {
         description,
         price: Number(price),
         category,
-        imageUrl: imagePreview || "https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=600&h=400&fit=crop",
+        image: imageFile,
       });
       toast({ title: "Listing created!", description: "Your item is now live." });
       navigate("/");
